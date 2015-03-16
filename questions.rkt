@@ -131,10 +131,14 @@
                                                      "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
                                                      "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
                                                      "Mushihimesama Futari 1.5" (input ([type "radio"][value "Mushihimesama Futari 1.5"][name "answer"])) (br)
-                                                     (input ([name "answer"])) (br)
+                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
+                                                     (input ([name "other"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
-          (define value (extract-binding/single 'answer bindings))]
+          (define value 
+            (if (equal? (extract-binding/single 'answer bindings) "other")
+                (extract-binding/single 'other bindings)
+                (extract-binding/single 'answer bindings)))]
     (cond
       [else (append  answers (list value))])
     ))
@@ -150,10 +154,14 @@
                                                      "Sin and Punishment" (input ([type "radio"][value "Sin and Punishment"][name "answer"])) (br)
                                                      "Ikaruga" (input ([type "radio"][value "SP"][name "Ikaruga"])) (br)
                                                      "Sin and Punishment: Star Successor" (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"])) (br)
-                                                     (input ([name "answer"])) (br)
+                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
+                                                     (input ([name "other"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
-          (define value (extract-binding/single 'answer bindings))]
+          (define value 
+            (if (equal? (extract-binding/single 'answer bindings) "other")
+                (extract-binding/single 'other bindings)
+                (extract-binding/single 'answer bindings)))]
     (cond
       [else (append answers (list value))])
     ))
