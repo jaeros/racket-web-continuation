@@ -10,12 +10,21 @@
                 (lambda (op) (write-bytes (string->bytes/utf-8 (format-response answers)) op))))))
 
 (define (format-response answers)
-   (string-append "<html><head><title>Your results</title></head><body><p>You answered</p>" (format-answers answers) "</body></html>"))
+   (string-append 
+    "<html>"
+       "<head>"
+          "<title>Your results</title>"
+       "</head>"
+       "<body>"
+          "<p>You answered:</p>"
+          "<ul>" (format-answers answers) "</ul>"
+       "</body>"
+    "</html>"))
 
 (define (format-answers answers)
   (foldl
    (lambda (answer result) 
-     (string-append result (string-append "<p>" answer "</p>")))
+     (string-append result (string-append "<li>" answer "</li>")))
    ""
    answers))
 
