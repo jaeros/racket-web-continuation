@@ -2,91 +2,131 @@
 (require web-server/templates)
 
 (define (start initial-request)
-  (local [(define result (list (question-1) (question-2) (question-3) (question-4)))]
+  (local [(define result (question-1 (list)))]
     (send/back (response/xexpr `(html (head (title "Your results"))
                                       (body (p "You answered " ,result ;TODO figure out how to print list
                                                )
                                             ))))))
 
 
-(define (question-1)
+(define (question-1 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
-                                       `(html (head (title "Enter number"))
+                                       `(html (head (title "Question 1"))
                                               (body
                                                (form ([action ,k-url])
-                                                     "What is the best controller for shooters?"(br)
+                                                     "1. What is the best controller for shooters?"(br)
                                                      "Arcade Stick" (input ([type "radio"][value "Arcade Stick"][name "answer"])) (br)
                                                      "Gamepad" (input ([type "radio"][value "Gamepad"][name "answer"])) (br)
                                                      "Keyboard" (input ([type "radio"][value "Keyboard"][name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
-    value ; return the value
-  
+    (cond
+      [(equal? "Arcade Stick" value) (question-2 (append (list value) answers))]
+      [else (question-3 (append (list value) answers))])
     ))
 
-(define (question-2)
+(define (question-2 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
                                        `(html (head (title "Question 2"))
                                               (body
                                                (form ([action ,k-url])
-                                                     "What is the best gate?"(br)
+                                                     "2. What is the best gate?"(br)
                                                      "Circular" (input ([type "radio"][value "Circular"][name "answer"])) (br)
                                                      "Octangonal" (input ([type "radio"][value "Octangonal"][name "answer"])) (br)
                                                      "Square" (input ([type "radio"][value "Square"][name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
-    value ; return the value
+    (cond
+      [else (question-3 (append (list value) answers))])
     ))
 
-(define (question-3)
+(define (question-3 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
                                        `(html (head (title "Question 3"))
                                               (body
                                                (form ([action ,k-url])
-                                                     "Do you prefer horizontal or vertical scrolling?"(br)
+                                                     "3. Do you prefer horizontal or vertical scrolling?"(br)
                                                      "Horizontal" (input ([type "radio"][value "Horizontal"][name "answer"])) (br)
                                                      "Vertical" (input ([type "radio"][value "Vertical"][name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
-    value ; return the value
+    (cond
+      [(equal? "Horizontal" value) (question-4 (append (list value) answers))]
+      [else (question-5 (append (list value) answers))])
     ))
 
-(define (question-4)
+(define (question-4 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
                                        `(html (head (title "Question 4"))
                                               (body
                                                (form ([action ,k-url])
-                                                     "What is the best horizontal shooter?"(br)
-                                                     "Gradius V" (input ([type "radio"][value "GV"][name "answer"])) (br)
-                                                     "Sexy Parodius" (input ([type "radio"][value "SP"][name "answer"])) (br)
-                                                     "Border Down" (input ([type "radio"][value "BD"][name "answer"])) (br)
-                                                     "Deathsmiles" (input ([type "radio"][value "D"][name "answer"])) (br)
+                                                     "4. What is the best horizontal shooter?"(br)
+                                                     "Gradius V" (input ([type "radio"][value "Gradius V"][name "answer"])) (br)
+                                                     "Sexy Parodius" (input ([type "radio"][value "Sexy Parodius"][name "answer"])) (br)
+                                                     "Border Down" (input ([type "radio"][value "Border Down"][name "answer"])) (br)
+                                                     "Deathsmiles" (input ([type "radio"][value "Deathsmiles"][name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
-    value ; return the value
+    (cond
+      [else (append (list value) answers)])
     ))
 
-(define (question-5)
+(define (question-5 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
-                                       `(html (head (title "Question 4"))
+                                       `(html (head (title "Question 5"))
                                               (body
                                                (form ([action ,k-url])
-                                                     "What is the best horizontal shooter?"(br)
-                                                     "Gradius V" (input ([type "radio"][value "GV"][name "answer"])) (br)
-                                                     "Sexy Parodius" (input ([type "radio"][value "SP"][name "answer"])) (br)
-                                                     "Border Down" (input ([type "radio"][value "BD"][name "answer"])) (br)
-                                                     "Deathsmiles" (input ([type "radio"][value "D"][name "answer"])) (br)
+                                                     "5. Which is the better developer?"(br)
+                                                     "Cave" (input ([type "radio"][value "Cave"][name "answer"])) (br)
+                                                     "Treasure" (input ([type "radio"][value "Treasure"][name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
-    value ; return the value
+    (cond
+      [(equal? "Cave" value) (question-6 (append (list value) answers))]
+      [else (question-7 (append (list value) answers))])
+    ))
+
+(define (question-6 answers)
+  (local [(define req (send/suspend (lambda (k-url)
+                                      (response/xexpr 
+                                       `(html (head (title "Question 6"))
+                                              (body
+                                               (form ([action ,k-url])
+                                                     "6. What is cave's best release?"(br)
+                                                     "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
+                                                     "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
+                                                     "Mushihimesama Futari 1.5" (input ([type "radio"][value "SP"][name "Mushihimesama Futari 1.5"])) (br)
+                                                     (input ([type "submit"])))))))))
+          (define bindings (request-bindings req))
+          (define value (extract-binding/single 'answer bindings))]
+    (cond
+      [else (append (list value) answers)])
+    ))
+
+(define (question-7 answers)
+  (local [(define req (send/suspend (lambda (k-url)
+                                      (response/xexpr 
+                                       `(html (head (title "Question 7"))
+                                              (body
+                                               (form ([action ,k-url])
+                                                     "7. What is Treasure's best release?"(br)
+                                                     "Radiant Silvergun" (input ([type "radio"][value "Radiant Silvergun"][name "answer"])) (br)
+                                                     "Sin and Punishment" (input ([type "radio"][value "Sin and Punishment"][name "answer"])) (br)
+                                                     "Ikaruga" (input ([type "radio"][value "SP"][name "Ikaruga"])) (br)
+                                                     "Sin and Punishment: Star Successor" (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"])) (br)
+                                                     (input ([type "submit"])))))))))
+          (define bindings (request-bindings req))
+          (define value (extract-binding/single 'answer bindings))]
+    (cond
+      [else (append (list value) answers)])
     ))
