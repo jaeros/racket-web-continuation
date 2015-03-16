@@ -3,10 +3,22 @@
 
 (define (start initial-request)
   (local [(define answers (question-1 (list)))]
-    (send/back (response/xexpr `(html (head (title "Your results"))
-                                      (body (p "You answered " ,answers ;TODO figure out how to print list
-                                               )
-                                            ))))))
+    (send/back (response 
+                200 #"OK"
+                (current-seconds) TEXT/HTML-MIME-TYPE
+                empty
+                (lambda (op) (write-bytes (string->bytes/utf-8 (format-response answers)) op))))))
+
+(define (format-response answers)
+   (string-append "<html><head><title>Your results</title></head><body><p>You answered</p>" (format-answers answers) "</body></html>"))
+
+(define (format-answers answers)
+  (foldl
+   (lambda (answer result) 
+     (string-append result (string-append "<p>" answer "</p>")))
+   ""
+   answers))
+
 
 (define (question-1 answers)
   (local [(define req (send/suspend (lambda (k-url)
@@ -77,8 +89,8 @@
           (define bindings (request-bindings req))
           (define value 
             (if (equal? (extract-binding/single 'answer bindings) "other")
-                (extract-binding/single 'answer bindings)
-                (extract-binding/single 'other bindings)))]
+                (extract-binding/single 'other bindings)
+                (extract-binding/single 'answer bindings)))]
     (cond
       [else (append  answers (list value))])
     ))
