@@ -2,9 +2,9 @@
 (require web-server/templates)
 
 (define (start initial-request)
-  (local [(define result (question-1 (list)))]
+  (local [(define answers (question-1 (list)))]
     (send/back (response/xexpr `(html (head (title "Your results"))
-                                      (body (p "You answered " ,result ;TODO figure out how to print list
+                                      (body (p "You answered " ,answers ;TODO figure out how to print list
                                                )
                                             ))))))
 
@@ -72,6 +72,7 @@
                                                      "Sexy Parodius" (input ([type "radio"][value "Sexy Parodius"][name "answer"])) (br)
                                                      "Border Down" (input ([type "radio"][value "Border Down"][name "answer"])) (br)
                                                      "Deathsmiles" (input ([type "radio"][value "Deathsmiles"][name "answer"])) (br)
+                                                     (input ([name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -106,6 +107,7 @@
                                                      "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
                                                      "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
                                                      "Mushihimesama Futari 1.5" (input ([type "radio"][value "SP"][name "Mushihimesama Futari 1.5"])) (br)
+                                                     (input ([name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -124,6 +126,7 @@
                                                      "Sin and Punishment" (input ([type "radio"][value "Sin and Punishment"][name "answer"])) (br)
                                                      "Ikaruga" (input ([type "radio"][value "SP"][name "Ikaruga"])) (br)
                                                      "Sin and Punishment: Star Successor" (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"])) (br)
+                                                     (input ([name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
