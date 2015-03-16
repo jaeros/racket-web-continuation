@@ -8,7 +8,6 @@
                                                )
                                             ))))))
 
-
 (define (question-1 answers)
   (local [(define req (send/suspend (lambda (k-url)
                                       (response/xexpr 
@@ -72,10 +71,14 @@
                                                      "Sexy Parodius" (input ([type "radio"][value "Sexy Parodius"][name "answer"])) (br)
                                                      "Border Down" (input ([type "radio"][value "Border Down"][name "answer"])) (br)
                                                      "Deathsmiles" (input ([type "radio"][value "Deathsmiles"][name "answer"])) (br)
-                                                     (input ([name "answer"])) (br)
+                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
+                                                     (input ([name "other"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
-          (define value (extract-binding/single 'answer bindings))]
+          (define value 
+            (if (equal? (extract-binding/single 'answer bindings) "other")
+                (extract-binding/single 'answer bindings)
+                (extract-binding/single 'other bindings)))]
     (cond
       [else (append  answers (list value))])
     ))
