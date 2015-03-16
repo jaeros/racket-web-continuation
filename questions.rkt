@@ -23,8 +23,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Arcade Stick" value) (question-2 (append (list value) answers))]
-      [else (question-3 (append (list value) answers))])
+      [(equal? "Arcade Stick" value) (question-2 (append  answers (list value)))]
+      [else (question-3 (append  answers (list value)))])
     ))
 
 (define (question-2 answers)
@@ -41,7 +41,7 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [else (question-3 (append (list value) answers))])
+      [else (question-3 (append  answers (list value)))])
     ))
 
 (define (question-3 answers)
@@ -57,8 +57,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Horizontal" value) (question-4 (append (list value) answers))]
-      [else (question-5 (append (list value) answers))])
+      [(equal? "Horizontal" value) (question-4 (append  answers (list value)))]
+      [else (question-5 (append  answers (list value)))])
     ))
 
 (define (question-4 answers)
@@ -76,7 +76,7 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [else (append (list value) answers)])
+      [else (append  answers (list value))])
     ))
 
 (define (question-5 answers)
@@ -92,8 +92,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Cave" value) (question-6 (append (list value) answers))]
-      [else (question-7 (append (list value) answers))])
+      [(equal? "Cave" value) (question-6 (append  answers (list value)))]
+      [else (question-7 (append  answers (list value)))])
     ))
 
 (define (question-6 answers)
@@ -110,7 +110,7 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [else (append (list value) answers)])
+      [else (append  answers (list value))])
     ))
 
 (define (question-7 answers)
@@ -128,5 +128,5 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [else (append (list value) answers)])
+      [else (append answers (list value))])
     ))
