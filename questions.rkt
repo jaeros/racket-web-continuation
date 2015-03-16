@@ -17,14 +17,14 @@
        "</head>"
        "<body>"
           "<p>You answered:</p>"
-          "<ul>" (format-answers answers) "</ul>"
+           (format-answers answers) 
        "</body>"
     "</html>"))
 
 (define (format-answers answers)
   (foldl
    (lambda (answer result) 
-     (string-append result (string-append "<li>" answer "</li>")))
+     (string-append result (string-append "<p>" answer "</p>")))
    ""
    answers))
 
@@ -43,8 +43,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Arcade Stick" value) (question-2 (append  answers (list value)))]
-      [else (question-3 (append  answers (list value)))])
+      [(equal? "Arcade Stick" value) (question-2 (append  answers (list "1. What is the best controller for shooters?" value)))]
+      [else (question-3 (append  answers (list "1. What is the best controller for shooters?" value)))])
     ))
 
 (define (question-2 answers)
@@ -61,7 +61,7 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [else (question-3 (append  answers (list value)))])
+      [else (question-3 (append  answers (list "2. What is the best gate?" value)))])
     ))
 
 (define (question-3 answers)
@@ -77,8 +77,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Horizontal" value) (question-4 (append  answers (list value)))]
-      [else (question-5 (append  answers (list value)))])
+      [(equal? "Horizontal" value) (question-4 (append  answers (list "3. Do you prefer horizontal or vertical scrolling?" value)))]
+      [else (question-5 (append  answers (list "3. Do you prefer horizontal or vertical scrolling?" value)))])
     ))
 
 (define (question-4 answers)
@@ -92,8 +92,7 @@
                                                      "Sexy Parodius" (input ([type "radio"][value "Sexy Parodius"][name "answer"])) (br)
                                                      "Border Down" (input ([type "radio"][value "Border Down"][name "answer"])) (br)
                                                      "Deathsmiles" (input ([type "radio"][value "Deathsmiles"][name "answer"])) (br)
-                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
-                                                     (input ([name "other"])) (br)
+                                                     (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value 
@@ -101,7 +100,7 @@
                 (extract-binding/single 'other bindings)
                 (extract-binding/single 'answer bindings)))]
     (cond
-      [else (append  answers (list value))])
+      [else (append  answers (list "4. What is the best horizontal shooter?" value))])
     ))
 
 (define (question-5 answers)
@@ -117,8 +116,8 @@
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
     (cond
-      [(equal? "Cave" value) (question-6 (append  answers (list value)))]
-      [else (question-7 (append  answers (list value)))])
+      [(equal? "Cave" value) (question-6 (append  answers (list "5. Which is the better developer?" value)))]
+      [else (question-7 (append  answers (list "5. Which is the better developer?" value)))])
     ))
 
 (define (question-6 answers)
@@ -131,8 +130,7 @@
                                                      "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
                                                      "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
                                                      "Mushihimesama Futari 1.5" (input ([type "radio"][value "Mushihimesama Futari 1.5"][name "answer"])) (br)
-                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
-                                                     (input ([name "other"])) (br)
+                                                     (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value 
@@ -140,7 +138,7 @@
                 (extract-binding/single 'other bindings)
                 (extract-binding/single 'answer bindings)))]
     (cond
-      [else (append  answers (list value))])
+      [else (append  answers (list "6. What is cave's best release?" value))])
     ))
 
 (define (question-7 answers)
@@ -154,8 +152,7 @@
                                                      "Sin and Punishment" (input ([type "radio"][value "Sin and Punishment"][name "answer"])) (br)
                                                      "Ikaruga" (input ([type "radio"][value "SP"][name "Ikaruga"])) (br)
                                                      "Sin and Punishment: Star Successor" (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"])) (br)
-                                                     "Other" (input ([type "radio"] [value "other"] [name "answer"])) (br)
-                                                     (input ([name "other"])) (br)
+                                                     (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value 
@@ -163,5 +160,5 @@
                 (extract-binding/single 'other bindings)
                 (extract-binding/single 'answer bindings)))]
     (cond
-      [else (append answers (list value))])
+      [else (append answers (list "7. What is Treasure's best release?" value))])
     ))
