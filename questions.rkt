@@ -106,7 +106,7 @@
                                                      "6. What is cave's best release?"(br)
                                                      "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
                                                      "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
-                                                     "Mushihimesama Futari 1.5" (input ([type "radio"][value "SP"][name "Mushihimesama Futari 1.5"])) (br)
+                                                     "Mushihimesama Futari 1.5" (input ([type "radio"][value "Mushihimesama Futari 1.5"][name "answer"])) (br)
                                                      (input ([name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
