@@ -36,9 +36,9 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "1. What is the best controller for shooters?"(br)
-                                                     "Arcade Stick" (input ([type "radio"][value "Arcade Stick"][name "answer"])) (br)
-                                                     "Gamepad" (input ([type "radio"][value "Gamepad"][name "answer"])) (br)
-                                                     "Keyboard" (input ([type "radio"][value "Keyboard"][name "answer"])) (br)
+                                                     (input ([type "radio"][value "Arcade Stick"][name "answer"][checked "checked"])) (label "Arcade Stick") (br)
+                                                     (input ([type "radio"][value "Gamepad"][name "answer"])) (label "Gamepad") (br)
+                                                     (input ([type "radio"][value "Keyboard"][name "answer"])) (label "Keyboard")(br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -54,9 +54,9 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "2. What is the best gate?"(br)
-                                                     "Circular" (input ([type "radio"][value "Circular"][name "answer"])) (br)
-                                                     "Octangonal" (input ([type "radio"][value "Octangonal"][name "answer"])) (br)
-                                                     "Square" (input ([type "radio"][value "Square"][name "answer"])) (br)
+                                                     (input ([type "radio"][value "Circular"][name "answer"][checked "checked"])) (label "Circular") (br)
+                                                     (input ([type "radio"][value "Octangonal"][name "answer"])) (label "Octangonal") (br)
+                                                     (input ([type "radio"][value "Square"][name "answer"])) (label "Square")(br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -71,8 +71,8 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "3. Do you prefer horizontal or vertical scrolling?"(br)
-                                                     "Horizontal" (input ([type "radio"][value "Horizontal"][name "answer"])) (br)
-                                                     "Vertical" (input ([type "radio"][value "Vertical"][name "answer"])) (br)
+                                                     (input ([type "radio"][value "Horizontal"][name "answer"][checked "checked"])) (label "Horizontal")(br)
+                                                     (input ([type "radio"][value "Vertical"][name "answer"])) (label "Vertical") (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -88,11 +88,11 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "4. What is the best horizontal shooter?"(br)
-                                                     "Gradius V" (input ([type "radio"][value "Gradius V"][name "answer"])) (br)
-                                                     "Sexy Parodius" (input ([type "radio"][value "Sexy Parodius"][name "answer"])) (br)
-                                                     "Border Down" (input ([type "radio"][value "Border Down"][name "answer"])) (br)
-                                                     "Deathsmiles" (input ([type "radio"][value "Deathsmiles"][name "answer"])) (br)
-                                                     (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
+                                                     (input ([type "radio"][value "Gradius V"][name "answer"][checked "checked"]))(label "Gradius V") (br)
+                                                     (input ([type "radio"][value "Sexy Parodius"][name "answer"]))(label "Sexy Parodius") (br)
+                                                     (input ([type "radio"][value "Border Down"][name "answer"]))(label "Border Down") (br)
+                                                     (input ([type "radio"][value "Deathsmiles"][name "answer"]))(label "Deathsmiles") (br)
+                                                     (input ([type "radio"] [value "other"] [name "answer"])) (label "Other: ") (input ([name "other"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value 
@@ -110,8 +110,8 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "5. Which is the better developer?"(br)
-                                                     "Cave" (input ([type "radio"][value "Cave"][name "answer"])) (br)
-                                                     "Treasure" (input ([type "radio"][value "Treasure"][name "answer"])) (br)
+                                                     (input ([type "radio"][value "Cave"][name "answer"][checked "checked"]))(label "Cave") (br)
+                                                     (input ([type "radio"][value "Treasure"][name "answer"]))(label "Treasure") (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value (extract-binding/single 'answer bindings))]
@@ -127,10 +127,10 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "6. What is cave's best release?"(br)
-                                                     "Dodonpachi" (input ([type "radio"][value "Dodonpachi"][name "answer"])) (br)
-                                                     "Ketsui kizuna jigoku tachi" (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"])) (br)
-                                                     "Mushihimesama Futari 1.5" (input ([type "radio"][value "Mushihimesama Futari 1.5"][name "answer"])) (br)
-                                                     (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
+                                                     (input ([type "radio"][value "Dodonpachi"][name "answer"][checked "checked"]))(label "Dodonpachi") (br)
+                                                     (input ([type "radio"][value "Ketsui kizuna jigoku tachi"][name "answer"]))(label "Ketsui kizuna jigoku tachi") (br)
+                                                     (input ([type "radio"][value "Mushihimesama Futari 1.5"][name "answer"]))(label "Mushihimesama Futari 1.5") (br)
+                                                     (input ([type "radio"] [value "other"] [name "answer"])) (label "Other: ") (input ([name "other"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
           (define value 
@@ -148,10 +148,10 @@
                                               (body
                                                (form ([action ,k-url])
                                                      "7. What is Treasure's best release?"(br)
-                                                     "Radiant Silvergun" (input ([type "radio"][value "Radiant Silvergun"][name "answer"])) (br)
-                                                     "Sin and Punishment" (input ([type "radio"][value "Sin and Punishment"][name "answer"])) (br)
-                                                     "Ikaruga" (input ([type "radio"][value "SP"][name "Ikaruga"])) (br)
-                                                     "Sin and Punishment: Star Successor" (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"])) (br)
+                                                     (input ([type "radio"][value "Radiant Silvergun"][name "answer"][checked "checked"])) (label "Radiant Silvergun") (br)
+                                                     (input ([type "radio"][value "Sin and Punishment"][name "answer"]))(label "Sin and Punishment") (br)
+                                                     (input ([type "radio"][value "SP"][name "Ikaruga"]))(label "Ikaruga") (br)
+                                                     (input ([type "radio"][value "Sin and Punishment: Star Successor"][name "answer"]))(label "Sin and Punishment: Star Successor") (br)
                                                      (input ([name "other"])) (input ([type "radio"] [value "other"] [name "answer"])) (br)
                                                      (input ([type "submit"])))))))))
           (define bindings (request-bindings req))
